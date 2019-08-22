@@ -1,1 +1,184 @@
-Hello World
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Daniel Roth | Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,900" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png" />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src=/javascripts/app.js></script>
+</head>
+
+<body>
+  <header>
+    <h1>Daniel Roth</h1>
+
+    <nav>
+      <a class="email" href="mailto:drote.email@gmail.com"></a>
+      <a class="linkedin" href="https://linkedin.com/in/daniel-rote-34169a12a/" target="_blank"></a>
+      <a class="github" href="https://github.com/drote" target="_blank"></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="image">
+        <img src="images/portrait.jpg" />
+      </div>
+      <article>
+        <div class="box">
+          <p>
+            I am a software engineer based in Seattle, WA.
+          </p>
+          <p>
+            Co-author of <a href="http://cushiondb.github.io" target="_blank"> CushionDB</a> &mdash; an open-source, client-side database for PWAs that syncs with a server side component.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="light" id="project">
+      <article>
+        <div class="box">
+          <img class="mobile" src="images/cushion-backend-init.gif" />
+
+          <h4>// recent project</h4>
+          <p>
+            <a href="http://cushiondb.github.io" target="_blank"> CushionDB</a> is an open-source, offline-first database for progressive web apps that enables background, smart syncing in the web.  
+          </p>
+          <p>
+            It is comprised of two parts:
+          </p>
+          <p>
+            <strong>-</strong> A client side component which stores data in IndexedDB and makes use of service workers and push notifications for syncing.
+          </p>
+          <p>
+            <strong>-</strong> A server side component comprised of a NodeJS server and a reconfigured CushionDB, both dockerized and running via a docker-compose image.
+          </p>
+
+          <a href="https://spacecraft-repl.com/whitepaper" target="_blank">
+            <button>
+              Read the case study
+            </button>
+          </a>
+        </div>
+      </article>
+      <div id="app">
+        <img id="logo" src="images/cushion-logo.png" />
+        <img src="images/cushion-backend-init.gif" />
+      </div>
+    </section>
+
+    <section id="presentation">
+      <article>
+        <div class="box">
+          <h4>// Past event</h4>
+          <h2>Tech Talk</h2>
+          <p>I presented my journey on building SpaceCraft for the <strong>QueensJS Meetup</strong> on February 6, 2019.</p>
+          <p></p>
+        </div>
+      </article>
+      <div class="player-wrapper">
+        <div id="player"></div>
+      </div>      
+    </section>
+
+    <section class="dark" id="other-projects">
+      <div class="box first">
+        <h4>// Freelance and private projects</h4>
+      </div>
+      <article id="projects">
+        <div class="box last">
+
+          <div class="other-project">
+            <img src="images/d-bur.gif">
+            <h2>Accessible YouTube</h2>
+            <p>An online application that enables users with disabilities to interact with YouTube content using an eye-scanning camera (Grid 3). Built with JS & jQuery with a Sinatra back end. Deployed on Digital Ocean using NGINX. </p>
+          </div>
+
+          <div class="other-project">
+            <img src="images/trello.png">
+            <h2>Trello Clone</h2>
+            <p>
+              A complex, feature-rich project management web application. Built with JS & React/Redux with a Ruby/Rails back end.
+            </p>
+          </div>
+
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <article id="info">
+      <div class="box">
+        <a href="/resume/daniel-rote.pdf">
+          <button>resume</button>
+        </a>
+<!--         <p>
+          <a href="mailto:drote.email@gmail.com">drote.email@gmail.com</a>
+        </p> -->
+        <nav>
+          <a class="email" href="mailto:drote.email@gmail.com"></a>
+          <a class="linkedin" href="https://linkedin.com/in/daniel-rote-34169a12a/" target="_blank"></a>
+          <a class="github" href="https://github.com/drote" target="_blank"></a>
+        </nav>
+        <p>Daniel Roth | 2019</p>
+      </div>
+    </article>
+    <small>
+<!--       Design by 
+      <a class="designer-link" href="https://www.instagram.com/linzimurray.creative/" target="_blank">
+        linzimurray.creative
+      </a> -->
+    </small>
+  </footer>  
+
+<!--   <script>
+    const $ = (element) => document.querySelector(element);
+    const tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = $('script');
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let player = null;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '100%',
+        width: '100%',
+        videoId: 'Dehmu9QpLTg',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) { } 
+    // needs to be defined in global scope
+
+    function onPlayerStateChange(event) {
+      const state = YT.PlayerState;
+      // if ([state.UNSTARTED, state.PLAYING].includes(event.data)) {
+      //   $('#presentation article').classList.add('hidden');
+      // }
+      // if (event.data === state.PAUSED) {
+      //   $('#presentation article').classList.remove('hidden');
+      // }
+    }
+  </script> -->
+  <script id="__bs_script__">
+  //<![CDATA[
+      document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
+  //]]>
+  </script>
+</body>
+</html>
