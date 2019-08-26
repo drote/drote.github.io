@@ -151,8 +151,7 @@ footer article {
 #projects .box.last {
   display: flex;
   justify-content: space-around;
-  width: 50%;
-  margin-right: 30%;
+  width: 75%;
 }
 
 div.box.first {
@@ -337,7 +336,6 @@ img.full {
 
 .box.last {
   background-color: var(--mainHighlight);
-  margin-left: -10%;
   width: 70%;
 }
 
