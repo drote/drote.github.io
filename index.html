@@ -3,411 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends Weekly | March 16-22, 2025</title>
+    <title>Friend Paper</title>
     <style>
-        /* Base Styles */
-        :root {
-            --primary-color: #1a365d;
-            --secondary-color: #4a5568;
-            --accent-color: #e53e3e;
-            --background-color: #f8f9fa;
-            --text-color: #2d3748;
-            --border-color: #e2e8f0;
-            --quote-bg: #edf2f7;
+        /* Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@700;900&display=swap');
+        
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
-            font-family: 'Arial Hebrew', Arial, sans-serif;
+            font-family: 'Libre Baskerville', Georgia, serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-            max-width: 900px;
+            color: #222;
+            background-color: #fff;
+            padding: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .newspaper {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #fff;
         }
         
-        /* Header Styles */
-        .header {
-            text-align: center;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .publication-title {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: -1px;
-        }
-        
-        .issue-info {
-            font-style: italic;
-            margin: 5px 0;
-            color: var(--secondary-color);
-        }
-        
-        /* Heading Styles */
-        h1, h2, h3, h4 {
-            font-family: 'Times New Roman', Times, serif;
-            color: var(--primary-color);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
         }
         
-        h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 50px;
-        }
-        
-        h3 {
-            font-size: 1.7rem;
-            margin-top: 30px;
-        }
-        
-        h4 {
-            font-size: 1.3rem;
-            margin-top: 25px;
-        }
-        
-        /* Content Styles */
-        p {
-            margin: 16px 0;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-        
-        /* Image Container */
-        .image-container {
+        .newspaper-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
             text-align: center;
-            margin: 30px 0;
+            font-weight: 900;
+            margin: 20px 0 5px;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
         
-        .image-container img {
-            max-width: 100%;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .caption {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            font-style: italic;
-            margin-top: 10px;
-        }
-        
-        /* Quotes */
-        blockquote {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.3rem;
-            background-color: var(--quote-bg);
-            border-right: 5px solid var(--accent-color);
-            padding: 20px;
-            margin: 30px 0;
-            line-height: 1.7;
-        }
-        
-        .attribution {
-            font-style: italic;
-            text-align: left;
-            margin-top: 10px;
+        .newspaper-date {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            text-align: center;
             font-size: 1rem;
+            margin: 5px auto 25px;
+            padding: 8px 0;
+            border-bottom: 3px solid #222;
+            border-top: 1px solid #222;
+            max-width: 90%;
         }
         
-        /* Section Dividers */
-        hr {
-            border: none;
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 40px 0;
+        /* Articles grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: 25px;
+            row-gap: 20px;
+            margin-top: 20px;
         }
         
-        /* Section Headers */
-        .section-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            margin: 40px 0 25px 0;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.8rem;
-            font-weight: bold;
+        /* Article containers */
+        .article {
+            margin-bottom: 25px;
+            position: relative;
+            break-inside: avoid;
         }
         
-        /* Lists */
-        ul {
-            margin: 20px 0;
-        }
-        
-        li {
+        .article-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 10px;
+            line-height: 1.2;
         }
         
-        /* Notes Sections */
-        .notes-section {
-            background-color: var(--quote-bg);
-            padding: 20px;
+        .article-subheadline {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .article-content {
+            font-size: 1rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 15px;
+        }
+        
+        /* Section headers */
+        .section-header {
+            grid-column: 1 / -1;
+            border-bottom: 2px solid #222;
+            margin: 30px 0 20px;
+            padding-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        /* Column spans */
+        .span-4 {
+            grid-column: span 4;
+        }
+        
+        .span-6 {
+            grid-column: span 6;
+        }
+        
+        .span-8 {
+            grid-column: span 8;
+        }
+        
+        .span-12 {
+            grid-column: span 12;
+        }
+        
+        /* Images */
+        .article-image {
+            width: 100%;
+            margin: 15px 0;
+            background-color: #f0f0f0;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        
+        .image-caption {
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 5px;
+            color: #555;
+        }
+        
+        /* Editors note */
+        .editors-note {
+            grid-column: 1 / -1;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
             margin: 30px 0;
-            border-radius: 5px;
+            background-color: #f9f9f9;
         }
         
-        .notes-section h4 {
-            margin-top: 0;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .articles-grid {
+                grid-template-columns: repeat(6, 1fr);
             }
             
-            .publication-title {
+            .span-4, .span-6, .span-8 {
+                grid-column: span 6;
+            }
+            
+            .newspaper-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .span-4, .span-6, .span-8, .span-12 {
+                grid-column: span 1;
+            }
+            
+            .newspaper-title {
                 font-size: 2.5rem;
             }
             
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.7rem;
-            }
-            
-            h3 {
-                font-size: 1.4rem;
-            }
-            
-            blockquote {
-                font-size: 1.1rem;
-                padding: 15px;
+            .section-header {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1 class="publication-title">FRIENDS WEEKLY</h1>
-        <p class="issue-info">Issue 1 | March 16-22, 2025</p>
-    </div>
-    
-    <h1>BETWEEN JOY AND TURMOIL: A WEEK IN SEVEN LIVES</h1>
-    
-    <hr>
-    
-    <h3>THE NEXT GENERATION: WHEN CHILDREN FORGE THEIR OWN BONDS</h3>
-    
-    <div class="image-container">
-        <img src="/photo_1.jpg" alt="Children in bubble bath - Photo by Nimrod Ronen">
-        <p class="caption">Children in bubble bath - Photo by Nimrod Ronen</p>
-    </div>
-    
-    <p>When Nimrod Ronen and his daughter Alma visited Avi Yagil's family for a second consecutive weekend, something profound emerged beneath the surface of their friendship.</p>
-    
-    <p>In an ordinary yet extraordinary moment, the children played together in a bubble bath, creating a scene that struck both fathers as deeply symbolic.</p>
-    
-    <p>"Looking at our children taking a foam bath together was a moving and formative moment," reflects Nimrod. "The children are planting another future for our friendship, as if not only were we having children, but the relationship itself has a second generation."</p>
-    
-    <p>The image of children continuing friendships their parents began decades ago stands in stark relief against the backdrop of uncertainty permeating daily life in Israel. The photos of Alma and Dori playing represent hope and continuity in a place where both can feel precarious.</p>
-    
-    <p>Avi agrees, noting the moment "was really touching to see them like that," adding with characteristic humor that the resulting images "looked like something from a Shilav catalog."</p>
-    
-    <p>In a week filled with professional obligations, political tensions, and parenting challenges, this shared moment between children represented something both fathers treasured: the prospect that the connections they've built might outlast themselves.</p>
-    
-    <hr>
-    
-    <h3>LIVING IN ISRAEL'S DUAL REALITY</h3>
-    
-    <p>To exist in Israel in March 2025 is to become expert in cognitive dissonance. The increasingly schizophrenic split between personal joy and national dread manifested in moments both mundane and profound.</p>
-    
-    <blockquote>
-        "Then I went to defecate and opened the news and saw that the genocide they supposedly put on 'pause' had returned in full force. So I went back to the room and looked at my son again and promised myself I'd get him out of here as soon as possible."
-        <p class="attribution">— Ben Ronen</p>
-    </blockquote>
-    
-    <p>Ben Ronen captured this duality most viscerally Thursday morning, when he woke at 4:30 a.m. to find his son sleeping peacefully beside him. "I looked at my son sleeping next to me and it filled me with happiness," he shared, along with a photo of his son in costume.</p>
-    
-    <p>Moments later, while checking the news, this domestic tranquility shattered. The whiplash between these mental states—from parental bliss to existential dread in minutes—exemplifies the emotional gymnastics required by daily life.</p>
-    
-    <div class="image-container">
-        <img src="/photo_2.jpg" alt="Ben's son in costume - Photo by Ben Ronen">
-        <p class="caption">Ben's son in costume - Photo by Ben Ronen</p>
-    </div>
-    
-    <p>Earlier in the week, Avi experienced similar psychic disruption after navigating a typical Monday of work and childcare. He found himself automatically opening the news: "The headline is Netanyahu fired Ronen Bar, and again reality here slaps you in the face, that this place is sick and spiraling downward, and there's no strength left for anything, not to change reality, not to eat something tasty."</p>
-    
-    <p>By week's end, Nimrod articulated what many seemed to be feeling: "The volume of this schizophrenic place keeps rising. Against my relatively peaceful life here with its small worries and pleasures are piles of guilt, anger, confusion wrapped in lots of repression." He concluded with a question that haunts many parents: "How will I explain this to my children?"</p>
-    
-    <hr>
-    
-    <div class="section-header">WELLNESS & LIFESTYLE</div>
-    
-    <h3>WATER, YOGA, AND CLIMBING WALLS: PHYSICAL WELLNESS AS MENTAL REFUGE</h3>
-    
-    <p>In a world where control seems increasingly elusive, the friends turned to their bodies as domains they could still partially govern. Through swimming, yoga, bouldering, and dedicated posture work, they found momentary respites from both physical pain and psychological distress.</p>
-    
-    <p>For Nimrod, Monday's swim training represented his most cherished weekly ritual. "The best moment of my week is when I swim in the pool during training," he writes. "I come out exhausted and strengthened. Yesterday they even held a sprint competition and I gave it my all."</p>
-    
-    <blockquote>
-        "Water has always been the thing that relaxes me most in the world."
-        <p class="attribution">— Nimrod Ronen</p>
-    </blockquote>
-    
-    <div class="image-container">
-        <img src="/photo_3.jpg" alt="Nimrod at swimming pool - Photo by Nimrod Ronen">
-        <p class="caption">Nimrod at swimming pool - Photo by Nimrod Ronen</p>
-    </div>
-    
-    <p>Avi likewise found temporary sanctuary in a yoga class at the workplace club he established. "In the sports and back spirit of today, I went to do yoga at the yoga club I established at work, and the things were somewhat forgotten for a moment between right twist and happy baby," he writes, though quickly adding, "but still the reality is shocking."</p>
-    
-    <div class="image-container">
-        <img src="/photo_4.jpg" alt="Avi's yoga session - Photo by Avi Yagil">
-        <p class="caption">Avi's yoga session - Photo by Avi Yagil</p>
-    </div>
-    
-    <p>Meanwhile, in Seattle, Daniel has been exploring bouldering since the beginning of the year. "It's a bit interesting and troubling and quite amazing," he reports, noting with characteristic dry humor that sometimes he feels "I'll break my back this way someday."</p>
-    
-    <p>The week also featured an extended group discussion about back pain management, with particular focus on the Ilan Lev method. Ofer Tisser reports "great improvement" after two years of treatment, while Ben similarly recommends the technique. Omri's first visit to a gym specifically for back strengthening sparked the conversation, suggesting that bodily well-being remains a common concern—and a topic where the friends readily offer support.</p>
-    
-    <div class="notes-section">
-        <h4>POSTURE NOTES</h4>
-        <ul>
-            <li>Ofer Tisser demonstrated his commitment to proper posture with a photo of himself using a knee chair.</li>
-            <li>Omri visited a gym upon doctor's recommendation specifically to build muscle for back support.</li>
-            <li>The group expressed collective interest in the Ilan Lev therapy method, with multiple members reporting positive experiences.</li>
-        </ul>
-    </div>
-    
-    <hr>
-    
-    <div class="section-header">FAMILY & RELATIONSHIPS</div>
-    
-    <h3>DAWN WITH THE LITTLE ONES: PARENTING'S EARLIEST HOURS</h3>
-    
-    <p>The crack of dawn finds many of these friends already awake—not by choice, but by parental obligation or professional necessity. Yet within these early hours, moments of profound connection emerge.</p>
-    
-    <p>Nimrod reports his daughter "woke up at five in the morning and insisted on putting on socks by herself, a motor skill stage she has completely mastered, and I think I still haven't." By six, he was already "eating Lego ice cream, Lego coffee, and Lego hot chocolate" with her.</p>
-    
-    <div class="image-container">
-        <img src="/photo_5.jpg" alt="Early morning play with daughter - Photo by Nimrod Ronen">
-        <p class="caption">Early morning play with daughter - Photo by Nimrod Ronen</p>
-    </div>
-    
-    <p>These pre-dawn parenting moments often yield unexpected tenderness. Ben's Thursday morning awakening at 4:30 allowed him to observe his sleeping son—a moment of pure contentment before the interruption of news alerts and work responsibilities. The promise he subsequently made to himself—"to get him out of here as soon as possible"—underscores how these intimate family moments often crystallize parents' priorities amid uncertainty.</p>
-    
-    <p>Even pickup routines become memorable. Avi shares how after leaving a work event, "I cut out to Dori's daycare because it's my pickup day, and there's nothing like that moment of taking him from daycare when he runs to you excitedly when you arrive." He had brought a panda toy to surprise his son, "but he threw it and gave a hug just to me."</p>
-    
-    <div class="notes-section">
-        <h4>PARENTING BRIEFS</h4>
-        <ul>
-            <li>Avi's son chose his father over a panda toy during daycare pickup</li>
-            <li>Nimrod and partner discussed timing for having another child while enjoying rare quiet time</li>
-            <li>Daniel and family continued fertility treatments, with their "third and likely final egg retrieval"</li>
-        </ul>
-    </div>
-    
-    <hr>
-    
-    <div class="section-header">ARTS & CULTURE</div>
-    
-    <h3>COLLECTIVE ESCAPISM: THE SHOWS AND SONGS GETTING FRIENDS THROUGH THE WEEK</h3>
-    
-    <p>As national tensions escalate, cultural consumption becomes more than entertainment—it transforms into necessary psychological refuge. The friends engaged actively with literature, music, and television throughout the week, often using these media as temporary escape hatches from reality.</p>
-    
-    <p>Television proved particularly important as common ground. Multiple members discussed current seasons of "Wedding Night" (חתונמי), which Ofer described as "the toughest season since COVID." The conversation revealed shared investment in the show's characters, with Nimrod noting one episode was "really intense" while describing a particular character as "painfully cringe at insane levels."</p>
-    
-    <p>"Severance" also emerged as a group favorite, though reactions to its second season were mixed. "From the first season I really fell hard for it," Ofer explained, before admitting disappointment that "this season really declined, all the packaging remained very impressive but the script simply became just another sci-fi series."</p>
-    
-    <p>Books provided more solitary escape. Ben highly recommended Werner Herzog's "Dusk World," describing it as "a very special book" about a Japanese Imperial Army lieutenant who refused to surrender until 1974—29 years after World War II ended. This literary enthusiasm contrasted with his assessment of the prog rock album it inspired: "I tried to listen to the album which is really so bad. You know the tip of the garbage bag that drips with liquid? Well, exactly that."</p>
-    
-    <div class="image-container">
-        <img src="/photo_6.jpg" alt="Record store visit - Photo by Avi Yagil">
-        <p class="caption">Record store visit - Photo by Avi Yagil</p>
-    </div>
-    
-    <p>By week's end, Avi reported visiting the relocated "Dune" record store, now operating "for the third time in a warehouse above Uganda," where he met a friend for coffee. He observed it was "nice to be in another world where every moment crazy or cute people come in looking for music."</p>
-    
-    <p>This cultural curation—finding the right shows, songs, and stories to process or temporarily forget current realities—emerged as critical emotional infrastructure for the group.</p>
-    
-    <div class="notes-section">
-        <h4>WEEKLY PLAYLIST SELECTIONS</h4>
-        <ul>
-            <li>Stone Roses - "Waterfall" (Nimrod)</li>
-            <li>Biluyim - Protest songs (Ofer)</li>
-            <li>Hermeto Pascoal - "Walking in the Garden" (Ben)</li>
-            <li>Dolly Parton - "9 to 5" (Ofer)</li>
-            <li>Leonard Cohen - "Famous Blue Raincoat" (Nimrod)</li>
-            <li>The Radiators - Song shared by Daniel</li>
-        </ul>
-    </div>
-    
-    <hr>
-    
-    <div class="section-header">WORK & DAILY LIFE</div>
-    
-    <h3>FLOWERING AMID CHAOS: FINDING PEACE IN DAILY WORK</h3>
-    
-    <p>For some members of the group, professional routines provide structure and occasional beauty amid disorder. This proved particularly true for Ben, whose early morning work with flowers at Danziger Flowers' cultivation division offers both literal and metaphorical distance from chaos.</p>
-    
-    <p>"Morning glimpse from my work that starts very early," Ben writes, sharing an image from his flower operation. "Flowers and working with them manage to filter much of the sewage flowing around us."</p>
-    
-    <div class="image-container">
-        <img src="/photo_7.jpg" alt="Ben's flower operation - Photo by Ben Ronen">
-        <p class="caption">Ben's flower operation - Photo by Ben Ronen</p>
-    </div>
-    
-    <p>Work environments vary dramatically across the group. While Ben begins his days in agricultural serenity, Daniel codes at Amazon's offices in Seattle. Though physically distant from Israel's immediate tensions, Daniel's international perspective brings different challenges—including the cultural adjustment of parenting in America, where his son's previous babysitter "left the profession and/or the country."</p>
-    
-    <p>The group's diverse professional roles—spanning entertainment, agriculture, marketing, gaming, and technology—reveal the breadth of their experiences while highlighting a common thread: five of the seven members hold management positions, prompting Ben to note early in the week, "so far 4/4 managers," before Ofer added, "wait, actually me too, head of drama development at Gil Productions!"</p>
-    
-    <p>This professional success stands in sometimes uncomfortable contrast to national anxieties—competence in controlled work environments alongside powerlessness in the broader political sphere.</p>
-    
-    <div class="notes-section">
-        <h4>PROFESSIONAL NOTES</h4>
-        <ul>
-            <li>Ofer Tisser performed at Levontin 7, despite admitting, "it's hard for me to stay awake after nine"</li>
-            <li>Avi attended his workplace Purim party, held paradoxically after Purim had ended</li>
-            <li>Omri recovered from "too much alcohol at work Purim party"</li>
-            <li>Daniel experimented with AI tools related to the group's newspaper project</li>
-        </ul>
-    </div>
-    
-    <hr>
-    
-    <div class="section-header">EDITORIAL</div>
-    
-    <h3>A WEEK IN FRAGMENTS</h3>
-    
-    <p>What emerges from this experiment—documenting daily experiences that would later become a newspaper—is a portrait of friendship as both witness and refuge. Against the backdrop of political turmoil and parental responsibility, these seven friends continue finding meaning in shared cultural references, wellness strategies, and the simple act of telling each other what happened today.</p>
-    
-    <p>The contrasts are stark: the peace of a child sleeping against renewed conflict, the joy of professional accomplishment against national decline, the pleasure of entertainment against the burden of awareness. Yet within these contradictions, connection persists.</p>
-    
-    <p>As the week concluded, the group unanimously voted to continue this documentation project, finding value in transforming everyday experiences into shared narrative. Perhaps this itself is an act of resistance: insisting that personal moments matter, that friendship endures, that joy remains possible—even as, and perhaps especially because, reality continues to "slap you in the face."</p>
-    
-    <hr>
-    
-    <div class="footer">
-        <p>Friend Paper Weekly | March 16-22, 2025 | Issue 1</p>
+    <div class="newspaper">
+        <header>
+            <h1 class="newspaper-title">FRIEND PAPER</h1>
+            <div class="newspaper-date">MARCH 16-22, 2025 | THE WEEKLY CHRONICLE OF FRIENDSHIP</div>
+        </header>
+        
+        <div class="articles-grid">
+            <h2 class="section-header">HEADLINE NEWS</h2>
+            
+            <article class="article span-8">
+                <h3 class="article-headline">KFAR BIALIK FATHER WITNESSES FRIENDSHIP'S NEXT GENERATION</h3>
+                <div class="article-content">
+                    <p>When Nimrod Ronen and his daughter Alma visited Avi Yagil's family for a second consecutive weekend, something profound emerged beneath the surface of their friendship. In an ordinary yet extraordinary moment, the children played together in a bubble bath, creating a scene that struck both fathers as deeply symbolic.</p>
+                    <img src="photo_1.jpg" alt="Children playing in bubble bath" class="article-image">
+                    <div class="image-caption">Alma and Dori enjoying bath time together, creating a moment of intergenerational friendship. Photo courtesy of Nimrod Ronen.</div>
+                    <p>"Looking at our children taking a foam bath together was a moving and formative moment," reflects Nimrod. "The children are planting another future for our friendship, as if not only were we having children, but the relationship itself has a second generation."</p>
+                    <p>The image of children continuing friendships their parents began decades ago stands in stark relief against the backdrop of uncertainty permeating daily life in Israel. The photos of Alma and Dori playing represent hope and continuity in a place where both can feel precarious.</p>
+                    <p>Avi agrees, noting the moment "was really touching to see them like that," adding with characteristic humor that the resulting images "looked like something from a Shilav catalog."</p>
+                    <p>In a week filled with professional obligations, political tensions, and parenting challenges, this shared moment between children represented something both fathers treasured: the prospect that the connections they've built might outlast themselves.</p>
+                </div>
+            </article>
+            
+            <article class="article span-4">
+                <h3 class="article-headline">SEATTLE PROGRAMMER UNDERTAKES THIRD EGG RETRIEVAL IN FERTILITY JOURNEY</h3>
+                <div class="article-subheadline">"Super fun, wouldn't trade it for anything," quips Amazon employee with trademark humor</div>
+                <div class="article-content">
+                    <p>Daniel Roth, 36, and his wife underwent their third—and potentially final—round of fertility treatments this week, marking a significant milestone in their family planning journey.</p>
+                    <img src="photo_2.jpg" alt="Seattle landscape" class="article-image">
+                    <div class="image-caption">The Seattle skyline, where Roth works as a programmer at Amazon. Stock photo.</div>
+                    <p>"We went for egg retrieval number 3, and probably the last one, because after this we'll need to start paying out of pocket," explained the Seattle-based programmer at Amazon. With characteristic dry humor, he added, "I don't know if any of you have dabbled in fertility treatments—basically super fun, I wouldn't trade it for anything in the world."</p>
+                    <p>Later in the week, inspired by other group members' physical activities, Roth pushed himself to go for a short run with the family dog despite the recovery period, demonstrating his determination to maintain normalcy during the challenging process.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">NEVE SHALOM FATHER MAKES DAWN PROMISE TO SON AMID TURBULENT WEEK</h3>
+                <div class="article-subheadline">"I'm taking him out of here as soon as possible," vows operational manager after complicated morning</div>
+                <div class="article-content">
+                    <p>Ben Ronen, 42, experienced a rollercoaster of emotions Tuesday morning when he awoke at 4:30 AM in his Neve Shalom home.</p>
+                    <p>"I looked at my son sleeping beside me, and it filled me with happiness," recalled the operational manager at Danziger Flower Company. The peaceful moment proved fleeting, however, as his day quickly turned chaotic with early morning disruptions.</p>
+                    <img src="photo_3.jpg" alt="Child in costume" class="article-image">
+                    <div class="image-caption">Ben's son in costume, "a picture that defeats the evil." Photo courtesy of Ben Ronen.</div>
+                    <p>Returning to his sleeping child, Ronen made a silent pledge: "I promised myself I'm taking him out of here as soon as possible."</p>
+                    <p>Later in the week, he shared a joyful photo of his son in costume with the group, describing the image as "a picture of him that defeats the evil" – a powerful testament to finding hope amid difficulty through the innocence of his child.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">JERUSALEM MUSICIAN PERFORMS AT LEVONTIN 7 DESPITE EARLY BEDTIME HABITS</h3>
+                <div class="article-subheadline">"A yawning pumpkin" takes stage after day of domestic productivity</div>
+                <div class="article-content">
+                    <p>Ofer Tisser's Tuesday began with a decidedly unglamorous "heroic battle with the vegetable drawer in the refrigerator" and concluded with a performance at one of Tel Aviv's beloved music venues.</p>
+                    <p>The 37-year-old Jerusalem-based musician and content manager at Mazkeka admitted to an unusual challenge for a performer: "Yesterday's performance was fun, even though it's hard for me to stay awake after nine, that's the truth."</p>
+                    <img src="photo_4.jpg" alt="Performance at Levontin 7" class="article-image">
+                    <div class="image-caption">Footage from Tisser's performance at Levontin 7. Still image from video shared by Ofer Tisser.</div>
+                    <p>When teased by friend Avi Yagil about "turning into a pumpkin" at nine o'clock, Tisser embraced the comparison with humor, calling himself "a yawning pumpkin." He later shared video footage from the performance, giving friends a glimpse into his musical world.</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">FAMILY & RELATIONSHIPS</h2>
+            
+            <article class="article span-12">
+                <h3 class="article-headline">THE EARLY RISERS CLUB: PARENTHOOD'S MORNING SHIFT</h3>
+                <div class="article-subheadline">Pre-dawn awakenings and developmental milestones mark the week</div>
+                <div class="article-content">
+                    <p>If there's one experience uniting several parents in the group, it's the remarkably early start to their days.</p>
+                    <img src="photo_5.jpg" alt="Early morning parenting" class="article-image">
+                    <div class="image-caption">The sun rises as parents begin their day with young children. Stock photo.</div>
+                    <p>"We're waiting for daylight saving time because meanwhile we're waking up very early," reported Nimrod Ronen, whose daughter Alma roused the household at 5:00 AM and immediately "insisted on putting on socks by herself, a motor skill she's completely mastered."</p>
+                    <p>By 6:00 AM, Ronen was already deep into pretend play, "eating Lego ice cream, Lego coffee, and Lego hot chocolate" with his enthusiastic daughter.</p>
+                    <p>Ben Ronen shared a similar experience from Neve Shalom, describing a day that "started at 4:00 AM with a siren and a sleep-stunned baby." The pre-dawn parenting club captures a universal aspect of early childhood—the redefinition of "morning" that comes with having young children, and the mixed emotions of exhaustion and joy that accompany these twilight hours of parenting.</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">CULTURE & ARTS</h2>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">HERZOG'S "TWILIGHT WORLD" CAPTIVATES NEVE SHALOM READER</h3>
+                <div class="article-subheadline">Japanese soldier's 29-year holdout leads to unexpected musical discovery</div>
+                <div class="article-content">
+                    <p>What began as a quiet reading experience turned into an unexpected cross-cultural journey for Ben Ronen this week. The 42-year-old operational manager found himself captivated by Werner Herzog's "Twilight World," a book he described as "very interesting, minimalist, and special."</p>
+                    <p>"I thought a lot about the book that I finished reading yesterday," Ronen wrote to the group. "It tells the story of Lieutenant Junior Grade Hiroo Onoda from the Imperial Japanese Army, who was stationed on an island in the Philippines during World War II and refused to surrender until 1974—29 years after the end of the war."</p>
+                    <p>Ronen's curiosity led him beyond the book's pages to research Onoda's remarkable life, where he discovered that the progressive rock band Camel had created their album "Nude" inspired by the Japanese officer's story.</p>
+                    <p>Despite his withering critique of the album ("You know that tip of the garbage bag that drips with liquid? Well, exactly that"), Ronen enthusiastically recommended Herzog's book, demonstrating how literary exploration can lead in unexpected directions.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">WHITE LOTUS EARNS TOP MARKS FROM HOD HASHARON SCREENWRITER</h3>
+                <div class="article-subheadline">"Episode five was amazing," declares drama development head</div>
+                <div class="article-content">
+                    <p>As conversation turned to streaming content, Ofer Seker emerged as a passionate advocate for HBO's hit series "The White Lotus."</p>
+                    <p>"For me, Lotus takes this year, and the fifth episode was amazing," declared the 38-year-old head of drama development at Gil Productions. His enthusiasm stood in contrast to his disappointment with another popular series, noting that despite impressive production values, "Severance's second season script simply became just another sci-fi series."</p>
+                    <p>The discussion revealed varied viewing habits among the group, with Daniel Roth questioning the concept of morning streaming: "We watch series in the evening like human beings, what's this business of morning series, where did you get that from?"</p>
+                    <p>Nimrod Ronen responded by sharing a glimpse into his family's unusual Friday morning routine: "That's not our routine, but this morning I finished cleaning the whole house by 10, and there were two whole hours of singlehood left, so we were in bed, talked about when to have another child, watched 'The Bear' which is just not bad enough that you can watch it."</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">URBAN LIFE</h2>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">TEL AVIV MARKETING MANAGER FINDS ESCAPE AT RELOCATED RECORD STORE</h3>
+                <div class="article-subheadline">"Dune" provides respite above bustling Uganda Bar after hectic week</div>
+                <div class="article-content">
+                    <p>Amid a hectic week, Avi Yagil found a moment of respite in an unexpected location: a newly relocated record store called "Dune," now housed in a warehouse above Uganda Bar in Tel Aviv.</p>
+                    <img src="photo_6.jpg" alt="Record store in Tel Aviv" class="article-image">
+                    <div class="image-caption">The "Dune" record store, located above Uganda Bar in Tel Aviv. Stock photo.</div>
+                    <p>"I went there to meet Itamar for coffee, who likes to combine social meetings with his work," the 38-year-old marketing and content manager of Old Jaffa explained. "It was nice to be in another world where every moment eccentric or sweet people come in looking for music."</p>
+                    <p>The multi-level cultural hub offered distinct atmospheres, as Yagil noted: "Below it's bustling especially with everyone who came for Friday hummus at Uganda."</p>
+                    <p>After his record store visit, Yagil and his son Dori continued their urban exploration by visiting "the community garden not far from our garden," where they "made mischief" and "saw a snail," finding small moments of wonder in the city's green spaces.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">PARDES HANNA LUNCH DATE LEADS TO AWKWARD RESTAURANT MOMENT</h3>
+                <div class="article-subheadline">Mother's candid question leaves restaurant owner "embarrassed-shocked"</div>
+                <div class="article-content">
+                    <p>When Omri Rosen took his mother to lunch at Miss Chu restaurant in Binyamina, he couldn't have anticipated the uncomfortable exchange that would ensue.</p>
+                    <p>"We were the first customers in the restaurant, and my tactful mother asked the waitress-owner if it's always empty there at lunch," recounted the 40-year-old video game team leader. "She was embarrassed-shocked and said, 'If that were the case, we wouldn't exist.'"</p>
+                    <p>The supposedly Vietnamese establishment offered food that Rosen described as "more like not-very-tasty Thai," adding to the overall disappointment of the dining experience.</p>
+                    <p>With characteristic humor, Rosen compared the awkward atmosphere to a famous sitcom location: "Kind of feels like George Costanza's office."</p>
+                    <p>The mother-son outing followed a visit to the bank, where Rosen had gone "to sign a longevity clause in my mother's bank account," adding a poignant undercurrent to their day together.</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">HEALTH & WELLNESS</h2>
+            
+            <article class="article span-12">
+                <h3 class="article-headline">GROUP MEMBERS EMBRACE PHYSICAL ACTIVITY AS STRESS ANTIDOTE</h3>
+                <div class="article-subheadline">Swimming, yoga, and climbing provide balance amid challenging week</div>
+                <div class="article-content">
+                    <p>Several group members reported turning to physical activities as a way to maintain balance and wellness in their busy lives.</p>
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 30%; margin-right: 10px;">
+                            <img src="photo_7.jpg" alt="Swimming pool" class="article-image">
+                            <div class="image-caption">Swimming provides mental escape for Nimrod Ronen.</div>
+                        </div>
+                        <div style="flex: 1; min-width: 30%; margin-right: 10px;">
+                            <img src="photo_8.jpg" alt="Yoga session" class="article-image">
+                            <div class="image-caption">Avi Yagil established a yoga club at his workplace.</div>
+                        </div>
+                        <div style="flex: 1; min-width: 30%;">
+                            <img src="photo_9.jpg" alt="Omri's Gym" class="article-image">
+                            <div class="image-caption">Omri's new trainer.</div>
+                        </div>
+                    </div>
+                    <p>Nimrod Ronen finds his sanctuary in the swimming pool, where competitive training provides both physical challenge and mental escape. "The best moment of my week is when I swim in the pool during training," he shared. "Water has always been the most calming thing in the world for me."</p>
+                    <p>Across town, Avi Yagil steals moments of peace at the yoga club he established at his workplace. "The troubles were forgotten for a moment between a twist to the right and happy baby pose," he reflected after a particularly hectic day.</p>
+                    <p>Meanwhile, in Seattle, Daniel Roth has discovered bouldering, which he described as "something I've been doing since the beginning of the year and it's a bit interesting and troubling and quite amazing."</p>
+                    <p>The conversation about physical wellness extended to addressing chronic pain, with several members discussing back problems and potential solutions. Ofer Tisser shared his success with alternative approaches: "I started battling my posture about two years ago through Ilan Lev treatments and yoga therapy. I used to suffer from back pain a lot."</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">PROFESSIONAL LIFE</h2>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">FIVE OUT OF SEVEN FRIENDS DISCOVER SHARED MANAGEMENT ROLES</h3>
+                <div class="article-subheadline">Coincidental career paths emerge during introductions</div>
+                <div class="article-content">
+                    <p>An unexpected pattern emerged when group members introduced themselves at the beginning of the week. Ben Ronen noticed and pointed out: "So far 4 out of 4 are managers," prompting Ofer Seker to realize, "Wait, actually so am I, department head of drama development at Gil Productions!"</p>
+                    <img src="photo_10.jpg" alt="Ofer's office" class="article-image">
+                    <div class="image-caption">Management roles were a common thread among the friends.</div>
+                    <p>The group's professional lineup reveals a surprising concentration of leadership positions:</p>
+                    <p>Nimrod Ronen, learning manager at Strauss<br>
+                    Ben Ronen, operational manager at the cultivation department of Danziger Flower Company<br>
+                    Avi Yagil, marketing and content manager of Old Jaffa<br>
+                    Ofer Tisser, musician and content manager at Mazkeka<br>
+                    Ofer Seker, head of drama development at Gil Productions<br>
+                    Omri Rosen, new games team leader at a video game company<br>
+                    Daniel Roth, programmer at Amazon in Seattle</p>
+                    <p>This revelation sparked amusement among the members and highlighted the unexpected connections that emerge when friends take the time to share details about their professional lives.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">THE MORNING AFTER: PURIM PARTY RECOVERY STORIES</h3>
+                <div class="article-subheadline">Corporate celebrations leave varying impacts on work week</div>
+                <div class="article-content">
+                    <p>The delayed effects of workplace Purim celebrations rippled through the group this week, with several members reporting distinctly different recovery experiences.</p>
+                    <img src="photo_11.jpg" alt="Office celebration" class="article-image">
+                    <div class="image-caption">Office Purim parties were a common feature of the work week. Stock photo.</div>
+                    <p>Tel Aviv gaming executive Omri Rosen made no attempt to disguise the aftermath of his company's festivities: "I slept until 1:00 PM today to recover from too much alcohol at the office Purim party yesterday. Since then I've been trying to scrape myself together to do something, but I can't get out of bed. I think this could fit into the gossip column of the newspaper."</p>
+                    <p>Avi Yagil attended a belated corporate celebration that defied his expectations: "My day consisted mainly of the office Purim party, which took place after Purim, in an event hall that was darker than any bar I know—a party in the middle of the day with trapeze dancers from the ceiling, very uncharacteristic for a municipal body event. But then Avi Tobi came up to perform with a medley of Greek songs, so it balanced out."</p>
+                    <p>These varied accounts of professional celebrations offer a window into the cultural role that workplace festivities play in creating both community and occasional next-day regrets.</p>
+                </div>
+            </article>
+            
+            <h2 class="section-header">STYLE & DESIGN</h2>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">WORKPLACE HAZARDS TRANSFORM INTO FASHION STATEMENTS</h3>
+                <div class="article-subheadline">Bleach splatters give ordinary work pants artistic makeover</div>
+                <div class="article-content">
+                    <p>What began as ordinary workwear has evolved into an accidental fashion statement for Ben Ronen, who shared a photo of his bleach-splattered pants with the group.</p>
+                    <img src="photo_12.jpg" alt="Bleach-splattered pants" class="article-image">
+                    <div class="image-caption">Ben Ronen's work pants, "naturally designed by bleach." Photo courtesy of Ben Ronen.</div>
+                    <p>"I'm contributing a picture to the fashion section of our newspaper," the 42-year-old operational manager at Danziger Flower Company wrote. "Work pants that were naturally designed by bleach used for disinfection at work."</p>
+                    <p>The unintentional pattern created by industrial cleaning supplies transformed the utilitarian garment into something with unexpected visual interest, demonstrating how workplace hazards can sometimes yield aesthetic results.</p>
+                </div>
+            </article>
+            
+            <article class="article span-6">
+                <h3 class="article-headline">MIXED MESSAGES: HEALTH BENCH ADVERTISES WITH PASTRY IMAGES</h3>
+                <div class="article-subheadline">Tel Aviv commuter spots contradictory wellness messaging</div>
+                <div class="article-content">
+                    <p>During a particularly hectic workday, Avi Yagil noticed an advertising contradiction that captured his attention on his morning commute.</p>
+                    <img src="photo_12.jpg" alt="Contradictory bench advertisement" class="article-image">
+                    <div class="image-caption">The bench advertisement that caught Avi Yagil's attention. Photo courtesy of Avi Yagil.</div>
+                    <p>"I'm attaching a photo of a bench I saw this morning on the way to work that called on me to be healthier," the 38-year-old marketing manager wrote. "On the cover there are cakes and pastries, so I'm not sure how healthy it really is, but the headline is convincing."</p>
+                    <p>The juxtaposition of wellness messaging alongside indulgent imagery provided a moment of amusement during Yagil's otherwise intense day, highlighting the often conflicting signals that urban advertising sends to passersby.</p>
+                </div>
+            </article>
+            
+            <div class="editors-note">
+                <h3 class="article-headline">FROM THE EDITOR'S DESK</h3>
+                <div class="article-content">
+                    <p>This week's collection of stories highlights the extraordinary within our ordinary lives. From Nimrod Ronen's moving observation of intergenerational friendship to Daniel Roth's fertility journey in Seattle, from Ben Ronen's early morning promise to his son to Ofer Tisser's evening performance despite his early bedtime tendencies—these personal narratives form the headlines of our lives.</p>
+                    <p>Beyond these individual stories, we've discovered patterns that connect us: the shared experience of early-rising children, the collective turn toward physical wellness as a coping mechanism, the unexpected professional parallels, and the cultural touchpoints that spark conversation.</p>
+                    <p>As we continue this experiment in friendship journalism, we're reminded that while traditional newspapers focus on world events, the truly meaningful headlines are often found in the moments that shape our personal worlds—the bath time revelations, the literary discoveries, the professional challenges, and the small urban escapes that make life both complicated and beautiful.</p>
+                    <p>Special thanks to all contributors:</p>
+                    <p>Ofer Seker, 38, screenwriter and drama development head, Hod HaSharon<br>
+                    Nimrod Ronen, 38, learning manager at Strauss, Kfar Bialik<br>
+                    Ben Ronen, 42, operational manager at Danziger Flower Company, Neve Shalom<br>
+                    Avi Yagil, 38, marketing and content manager of Old Jaffa, Tel Aviv<br>
+                    Ofer Tisser, 37, musician and content manager at Mazkeka, Jerusalem<br>
+                    Omri Rosen, 40, new games team leader at a video game company, Tel Aviv<br>
+                    Daniel Roth, 36, programmer at Amazon, Seattle</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
