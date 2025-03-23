@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Friend Paper</title>
     <style>
         /* Typography */
@@ -23,12 +23,14 @@
             padding: 0;
             max-width: 100%;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
         
         .newspaper {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             background-color: #fff;
         }
         
@@ -38,6 +40,7 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             line-height: 1.2;
+            word-wrap: break-word;
         }
         
         .newspaper-title {
@@ -76,6 +79,12 @@
             margin-bottom: 25px;
             position: relative;
             break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+            background-color: #fcfcfc;
+            padding: 15px;
+            border: 1px solid #f0f0f0;
         }
         
         .article-headline {
@@ -96,6 +105,9 @@
         
         .article-content {
             font-size: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .article-content p {
@@ -111,6 +123,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
+            background-color: #fff;
         }
         
         /* Column spans */
@@ -131,19 +144,46 @@
         }
         
         /* Images */
+        .article-image-container {
+            width: 100%;
+            position: relative;
+            margin: 10px 0 5px;
+        }
+        
         .article-image {
             width: 100%;
-            margin: 15px 0;
             background-color: #f0f0f0;
-            height: auto;
+            height: 220px;
             border: 1px solid #ddd;
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
         }
         
         .image-caption {
             font-size: 0.85rem;
             font-style: italic;
             margin-top: 5px;
+            margin-bottom: 15px;
             color: #555;
+        }
+        
+        /* Image gallery */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .gallery-item {
+            flex: 1;
+            min-width: 30%;
+            margin-right: 15px;
+        }
+        
+        .gallery-item:last-child {
+            margin-right: 0;
         }
         
         /* Editors note */
@@ -160,6 +200,7 @@
         @media (max-width: 900px) {
             .articles-grid {
                 grid-template-columns: repeat(6, 1fr);
+                column-gap: 15px;
             }
             
             .span-4, .span-6, .span-8 {
@@ -169,11 +210,29 @@
             .newspaper-title {
                 font-size: 3rem;
             }
+            
+            .article {
+                min-height: 350px;
+            }
+            
+            .article-image {
+                height: 180px;
+            }
+            
+            .gallery-item {
+                margin-right: 10px;
+            }
         }
         
         @media (max-width: 600px) {
+            .newspaper {
+                padding: 8px;
+            }
+            
             .articles-grid {
                 grid-template-columns: 1fr;
+                column-gap: 0;
+                row-gap: 15px;
             }
             
             .span-4, .span-6, .span-8, .span-12 {
@@ -181,11 +240,91 @@
             }
             
             .newspaper-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                margin: 15px 0 5px;
+                letter-spacing: -0.5px;
+            }
+            
+            .newspaper-date {
+                font-size: 0.9rem;
+                margin: 5px auto 15px;
+                padding: 5px 0;
             }
             
             .section-header {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin: 20px 0 15px;
+            }
+            
+            .article-headline {
+                font-size: 1.3rem;
+            }
+            
+            .article-subheadline {
+                font-size: 0.95rem;
+            }
+            
+            .article-content {
+                font-size: 0.95rem;
+            }
+            
+            .article {
+                min-height: 300px;
+                padding: 12px;
+            }
+            
+            .article-image {
+                height: 160px;
+            }
+            
+            .image-caption {
+                font-size: 0.8rem;
+            }
+            
+            .image-gallery {
+                flex-direction: column;
+            }
+            
+            .gallery-item {
+                min-width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* Additional mobile optimizations */
+        @media (max-width: 480px) {
+            .newspaper-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-headline {
+                font-size: 1.2rem;
+            }
+            
+            .article {
+                min-height: 250px;
+                padding: 10px;
+            }
+            
+            .article-image {
+                height: 140px;
+            }
+        }
+        
+        /* Touch-friendly adjustments */
+        @media (pointer: coarse) {
+            button, 
+            input, 
+            select, 
+            a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .article-headline, 
+            .section-header {
+                padding: 5px 0;
             }
         }
     </style>
@@ -204,8 +343,10 @@
                 <h3 class="article-headline">KFAR BIALIK FATHER WITNESSES FRIENDSHIP'S NEXT GENERATION</h3>
                 <div class="article-content">
                     <p>When Nimrod Ronen and his daughter Alma visited Avi Yagil's family for a second consecutive weekend, something profound emerged beneath the surface of their friendship. In an ordinary yet extraordinary moment, the children played together in a bubble bath, creating a scene that struck both fathers as deeply symbolic.</p>
-                    <img src="photo_1.jpg" alt="Children playing in bubble bath" class="article-image">
-                    <div class="image-caption">Alma and Dori enjoying bath time together, creating a moment of intergenerational friendship. Photo courtesy of Nimrod Ronen.</div>
+                    <div class="article-image-container">
+                        <img src="photo_1.jpg" alt="Children playing in bubble bath" class="article-image">
+                        <div class="image-caption">Alma and Dori enjoying bath time together, creating a moment of intergenerational friendship. Photo courtesy of Nimrod Ronen.</div>
+                    </div>
                     <p>"Looking at our children taking a foam bath together was a moving and formative moment," reflects Nimrod. "The children are planting another future for our friendship, as if not only were we having children, but the relationship itself has a second generation."</p>
                     <p>The image of children continuing friendships their parents began decades ago stands in stark relief against the backdrop of uncertainty permeating daily life in Israel. The photos of Alma and Dori playing represent hope and continuity in a place where both can feel precarious.</p>
                     <p>Avi agrees, noting the moment "was really touching to see them like that," adding with characteristic humor that the resulting images "looked like something from a Shilav catalog."</p>
@@ -218,8 +359,10 @@
                 <div class="article-subheadline">"Super fun, wouldn't trade it for anything," quips Amazon employee with trademark humor</div>
                 <div class="article-content">
                     <p>Daniel Roth, 36, and his wife underwent their third—and potentially final—round of fertility treatments this week, marking a significant milestone in their family planning journey.</p>
-                    <img src="seattle.jpg" alt="Seattle landscape" class="article-image">
-                    <div class="image-caption">The Seattle skyline, where Roth works as a programmer at Amazon. Stock photo.</div>
+                    <div class="article-image-container">
+                        <img src="photo_2.jpg" alt="Seattle landscape" class="article-image">
+                        <div class="image-caption">The Seattle skyline, where Roth works as a programmer at Amazon. Stock photo.</div>
+                    </div>
                     <p>"We went for egg retrieval number 3, and probably the last one, because after this we'll need to start paying out of pocket," explained the Seattle-based programmer at Amazon. With characteristic dry humor, he added, "I don't know if any of you have dabbled in fertility treatments—basically super fun, I wouldn't trade it for anything in the world."</p>
                     <p>Later in the week, inspired by other group members' physical activities, Roth pushed himself to go for a short run with the family dog despite the recovery period, demonstrating his determination to maintain normalcy during the challenging process.</p>
                 </div>
@@ -231,8 +374,10 @@
                 <div class="article-content">
                     <p>Ben Ronen, 42, experienced a rollercoaster of emotions Tuesday morning when he awoke at 4:30 AM in his Neve Shalom home.</p>
                     <p>"I looked at my son sleeping beside me, and it filled me with happiness," recalled the operational manager at Danziger Flower Company. The peaceful moment proved fleeting, however, as his day quickly turned chaotic with early morning disruptions.</p>
-                    <img src="photo_2.jpg" alt="Child in costume" class="article-image">
-                    <div class="image-caption">Ben's son in costume, "a picture that defeats the evil." Photo courtesy of Ben Ronen.</div>
+                    <div class="article-image-container">
+                        <img src="photo_3.jpg" alt="Child in costume" class="article-image">
+                        <div class="image-caption">Ben's son in costume, "a picture that defeats the evil." Photo courtesy of Ben Ronen.</div>
+                    </div>
                     <p>Returning to his sleeping child, Ronen made a silent pledge: "I promised myself I'm taking him out of here as soon as possible."</p>
                     <p>Later in the week, he shared a joyful photo of his son in costume with the group, describing the image as "a picture of him that defeats the evil" – a powerful testament to finding hope amid difficulty through the innocence of his child.</p>
                 </div>
@@ -244,8 +389,10 @@
                 <div class="article-content">
                     <p>Ofer Tisser's Tuesday began with a decidedly unglamorous "heroic battle with the vegetable drawer in the refrigerator" and concluded with a performance at one of Tel Aviv's beloved music venues.</p>
                     <p>The 37-year-old Jerusalem-based musician and content manager at Mazkeka admitted to an unusual challenge for a performer: "Yesterday's performance was fun, even though it's hard for me to stay awake after nine, that's the truth."</p>
-                    <img src="tisser.jpg" alt="Performance at Levontin 7" class="article-image">
-                    <div class="image-caption">Footage from Tisser's performance at Levontin 7. Still image from video shared by Ofer Tisser.</div>
+                    <div class="article-image-container">
+                        <img src="photo_4.jpg" alt="Performance at Levontin 7" class="article-image">
+                        <div class="image-caption">Ofer Tisser.</div>
+                    </div>
                     <p>When teased by friend Avi Yagil about "turning into a pumpkin" at nine o'clock, Tisser embraced the comparison with humor, calling himself "a yawning pumpkin." He later shared video footage from the performance, giving friends a glimpse into his musical world.</p>
                 </div>
             </article>
@@ -257,8 +404,10 @@
                 <div class="article-subheadline">Pre-dawn awakenings and developmental milestones mark the week</div>
                 <div class="article-content">
                     <p>If there's one experience uniting several parents in the group, it's the remarkably early start to their days.</p>
-                    <img src="photo_5.jpg" alt="Early morning parenting" class="article-image">
-                    <div class="image-caption">The sun rises as parents begin their day with young children. Stock photo.</div>
+                    <div class="article-image-container">
+                        <img src="photo_5.jpg" alt="Early morning parenting" class="article-image">
+                        <div class="image-caption">The sun rises as parents begin their day with young children. Stock photo.</div>
+                    </div>
                     <p>"We're waiting for daylight saving time because meanwhile we're waking up very early," reported Nimrod Ronen, whose daughter Alma roused the household at 5:00 AM and immediately "insisted on putting on socks by herself, a motor skill she's completely mastered."</p>
                     <p>By 6:00 AM, Ronen was already deep into pretend play, "eating Lego ice cream, Lego coffee, and Lego hot chocolate" with his enthusiastic daughter.</p>
                     <p>Ben Ronen shared a similar experience from Neve Shalom, describing a day that "started at 4:00 AM with a siren and a sleep-stunned baby." The pre-dawn parenting club captures a universal aspect of early childhood—the redefinition of "morning" that comes with having young children, and the mixed emotions of exhaustion and joy that accompany these twilight hours of parenting.</p>
@@ -296,8 +445,10 @@
                 <div class="article-subheadline">"Dune" provides respite above bustling Uganda Bar after hectic week</div>
                 <div class="article-content">
                     <p>Amid a hectic week, Avi Yagil found a moment of respite in an unexpected location: a newly relocated record store called "Dune," now housed in a warehouse above Uganda Bar in Tel Aviv.</p>
-                    <img src="photo_6.jpg" alt="Record store in Tel Aviv" class="article-image">
-                    <div class="image-caption">The "Dune" record store, located above Uganda Bar in Tel Aviv. Stock photo.</div>
+                    <div class="article-image-container">
+                        <img src="photo_6.jpg" alt="Record store in Tel Aviv" class="article-image">
+                        <div class="image-caption">The "Dune" record store, located above Uganda Bar in Tel Aviv. Stock photo.</div>
+                    </div>
                     <p>"I went there to meet Itamar for coffee, who likes to combine social meetings with his work," the 38-year-old marketing and content manager of Old Jaffa explained. "It was nice to be in another world where every moment eccentric or sweet people come in looking for music."</p>
                     <p>The multi-level cultural hub offered distinct atmospheres, as Yagil noted: "Below it's bustling especially with everyone who came for Friday hummus at Uganda."</p>
                     <p>After his record store visit, Yagil and his son Dori continued their urban exploration by visiting "the community garden not far from our garden," where they "made mischief" and "saw a snail," finding small moments of wonder in the city's green spaces.</p>
@@ -323,18 +474,24 @@
                 <div class="article-subheadline">Swimming, yoga, and climbing provide balance amid challenging week</div>
                 <div class="article-content">
                     <p>Several group members reported turning to physical activities as a way to maintain balance and wellness in their busy lives.</p>
-                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 30%; margin-right: 10px;">
-                            <img src="photo_3.jpg" alt="Swimming pool" class="article-image">
-                            <div class="image-caption">Swimming provides mental escape for Nimrod Ronen.</div>
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <div class="article-image-container">
+                                <img src="photo_7.jpg" alt="Swimming pool" class="article-image">
+                                <div class="image-caption">Swimming provides mental escape for Nimrod Ronen.</div>
+                            </div>
                         </div>
-                        <div style="flex: 1; min-width: 30%; margin-right: 10px;">
-                            <img src="photo_4.jpg" alt="Yoga session" class="article-image">
-                            <div class="image-caption">Avi Yagil established a yoga club at his workplace.</div>
+                        <div class="gallery-item">
+                            <div class="article-image-container">
+                                <img src="photo_8.jpg" alt="Yoga session" class="article-image">
+                                <div class="image-caption">Avi Yagil established a yoga club at his workplace.</div>
+                            </div>
                         </div>
-                        <div style="flex: 1; min-width: 30%;">
-                            <img src="photo_9.jpg" alt="Omri's Gym" class="article-image">
-                            <div class="image-caption">Omri's new trainer.</div>
+                        <div class="gallery-item">
+                            <div class="article-image-container">
+                                <img src="photo_9.jpg" alt="Omri's Gym" class="article-image">
+                                <div class="image-caption">Omri's new trainer.</div>
+                            </div>
                         </div>
                     </div>
                     <p>Nimrod Ronen finds his sanctuary in the swimming pool, where competitive training provides both physical challenge and mental escape. "The best moment of my week is when I swim in the pool during training," he shared. "Water has always been the most calming thing in the world for me."</p>
@@ -351,8 +508,10 @@
                 <div class="article-subheadline">Coincidental career paths emerge during introductions</div>
                 <div class="article-content">
                     <p>An unexpected pattern emerged when group members introduced themselves at the beginning of the week. Ben Ronen noticed and pointed out: "So far 4 out of 4 are managers," prompting Ofer Seker to realize, "Wait, actually so am I, department head of drama development at Gil Productions!"</p>
-                    <img src="photo_10.jpg" alt="Ofer's office" class="article-image">
-                    <div class="image-caption">Management roles were a common thread among the friends.</div>
+                    <div class="article-image-container">
+                        <img src="photo_10.jpg" alt="Ofer's office" class="article-image">
+                        <div class="image-caption">Management roles were a common thread among the friends.</div>
+                    </div>
                     <p>The group's professional lineup reveals a surprising concentration of leadership positions:</p>
                     <p>Nimrod Ronen, learning manager at Strauss<br>
                     Ben Ronen, operational manager at the cultivation department of Danziger Flower Company<br>
@@ -370,6 +529,10 @@
                 <div class="article-subheadline">Corporate celebrations leave varying impacts on work week</div>
                 <div class="article-content">
                     <p>The delayed effects of workplace Purim celebrations rippled through the group this week, with several members reporting distinctly different recovery experiences.</p>
+                    <div class="article-image-container">
+                        <img src="photo_11.jpg" alt="Office celebration" class="article-image">
+                        <div class="image-caption">Office Purim parties were a common feature of the work week. Stock photo.</div>
+                    </div>
                     <p>Tel Aviv gaming executive Omri Rosen made no attempt to disguise the aftermath of his company's festivities: "I slept until 1:00 PM today to recover from too much alcohol at the office Purim party yesterday. Since then I've been trying to scrape myself together to do something, but I can't get out of bed. I think this could fit into the gossip column of the newspaper."</p>
                     <p>Avi Yagil attended a belated corporate celebration that defied his expectations: "My day consisted mainly of the office Purim party, which took place after Purim, in an event hall that was darker than any bar I know—a party in the middle of the day with trapeze dancers from the ceiling, very uncharacteristic for a municipal body event. But then Avi Tobi came up to perform with a medley of Greek songs, so it balanced out."</p>
                     <p>These varied accounts of professional celebrations offer a window into the cultural role that workplace festivities play in creating both community and occasional next-day regrets.</p>
@@ -383,8 +546,10 @@
                 <div class="article-subheadline">Bleach splatters give ordinary work pants artistic makeover</div>
                 <div class="article-content">
                     <p>What began as ordinary workwear has evolved into an accidental fashion statement for Ben Ronen, who shared a photo of his bleach-splattered pants with the group.</p>
-                    <img src="photo_12.jpg" alt="Bleach-splattered pants" class="article-image">
-                    <div class="image-caption">Ben Ronen's work pants, "naturally designed by bleach." Photo courtesy of Ben Ronen.</div>
+                    <div class="article-image-container">
+                        <img src="photo_12.jpg" alt="Bleach-splattered pants" class="article-image">
+                        <div class="image-caption">Ben Ronen's work pants, "naturally designed by bleach." Photo courtesy of Ben Ronen.</div>
+                    </div>
                     <p>"I'm contributing a picture to the fashion section of our newspaper," the 42-year-old operational manager at Danziger Flower Company wrote. "Work pants that were naturally designed by bleach used for disinfection at work."</p>
                     <p>The unintentional pattern created by industrial cleaning supplies transformed the utilitarian garment into something with unexpected visual interest, demonstrating how workplace hazards can sometimes yield aesthetic results.</p>
                 </div>
@@ -395,8 +560,10 @@
                 <div class="article-subheadline">Tel Aviv commuter spots contradictory wellness messaging</div>
                 <div class="article-content">
                     <p>During a particularly hectic workday, Avi Yagil noticed an advertising contradiction that captured his attention on his morning commute.</p>
-                    <img src="photo_13.jpg" alt="Contradictory bench advertisement" class="article-image">
-                    <div class="image-caption">The bench advertisement that caught Avi Yagil's attention. Photo courtesy of Avi Yagil.</div>
+                    <div class="article-image-container">
+                        <img src="photo_12.jpg" alt="Contradictory bench advertisement" class="article-image">
+                        <div class="image-caption">The bench advertisement that caught Avi Yagil's attention. Photo courtesy of Avi Yagil.</div>
+                    </div>
                     <p>"I'm attaching a photo of a bench I saw this morning on the way to work that called on me to be healthier," the 38-year-old marketing manager wrote. "On the cover there are cakes and pastries, so I'm not sure how healthy it really is, but the headline is convincing."</p>
                     <p>The juxtaposition of wellness messaging alongside indulgent imagery provided a moment of amusement during Yagil's otherwise intense day, highlighting the often conflicting signals that urban advertising sends to passersby.</p>
                 </div>
